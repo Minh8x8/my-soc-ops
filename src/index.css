@@ -1,21 +1,121 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  --color-bubble-pink: oklch(0.95 0.13 330);
+  --color-bubble-blue: oklch(0.85 0.15 220);
+  --color-bubble-yellow: oklch(0.98 0.12 90);
+  --color-bubble-purple: oklch(0.92 0.14 270);
+  --color-bubble-green: oklch(0.93 0.13 140);
+  --color-bubble-shadow: 0 4px 24px 0 oklch(0.85 0.15 220 / 0.15);
+  --font-display: "Baloo 2", "Nunito", cursive, sans-serif;
+  --bubble-gradient: linear-gradient(
+    135deg,
+    var(--color-bubble-pink) 0%,
+    var(--color-bubble-blue) 50%,
+    var(--color-bubble-yellow) 100%
+  );
+  --bubble-bg: radial-gradient(
+    circle at 60% 40%,
+    var(--color-bubble-pink) 0%,
+    var(--color-bubble-blue) 40%,
+    var(--color-bubble-yellow) 80%
+  );
 }
 
 html,
 body,
 #root {
   height: 100%;
+  background: var(--bubble-bg);
+  font-family: var(--font-display);
+  color: oklch(0.25 0.05 250);
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-display);
   -webkit-tap-highlight-color: transparent;
+  background: var(--bubble-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Bubble motif decorations */
+.bubble {
+  border-radius: 999px;
+  box-shadow: var(--color-bubble-shadow);
+  background: var(--bubble-gradient);
+  transition:
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+.bubble-pop {
+  animation: bubblePop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes bubblePop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Anime-inspired text */
+.anime-title {
+  font-family: "Baloo 2", "Nunito", cursive, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-bubble-purple);
+  text-shadow: 0 2px 8px oklch(0.85 0.15 220 / 0.18);
+  letter-spacing: 0.05em;
+}
+.anime-subtitle {
+  font-family: "Nunito", cursive, sans-serif;
+  font-size: 1.25rem;
+  color: var(--color-bubble-blue);
+  font-weight: 500;
+}
+
+/* Bubble button */
+.bubble-btn {
+  border-radius: 999px;
+  background: var(--bubble-gradient);
+  color: oklch(0.25 0.05 250);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: var(--color-bubble-shadow);
+  padding: 0.75em 2em;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.bubble-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 32px 0 oklch(0.85 0.15 220 / 0.22);
+}
+
+/* Bubble card */
+.bubble-card {
+  border-radius: 2em;
+  background: var(--bubble-gradient);
+  box-shadow: var(--color-bubble-shadow);
+  padding: 2em;
+  margin: 1em 0;
+  transition:
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+.bubble-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px 0 oklch(0.85 0.15 220 / 0.25);
 }
