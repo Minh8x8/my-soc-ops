@@ -4,59 +4,33 @@ interface StartScreenProps {
 
 export function StartScreen({ onStart }: StartScreenProps) {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#334155]">
-      {/* Animated geometric background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 1440 900"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full animate-fade-in"
-        >
-          <circle
-            cx="720"
-            cy="450"
-            r="320"
-            fill="url(#radial)"
-            opacity="0.18"
-          />
-          <defs>
-            <radialGradient
-              id="radial"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientTransform="translate(720 450) scale(320)"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#38bdf8" />
-              <stop offset="1" stopColor="#0ea5e9" />
-            </radialGradient>
-          </defs>
-        </svg>
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-yellow-200 overflow-hidden">
+      {/* Pixel art background */}
+      <div className="absolute inset-0 z-0 pointer-events-none flex flex-col">
+        <div className="w-full h-24 bg-pink-400 pixel-border-top" />
+        <div className="flex-1 bg-blue-300" />
+        <div className="w-full h-24 bg-green-400 pixel-border-bottom" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-lg px-8 py-12 rounded-3xl shadow-xl bg-white/80 backdrop-blur-lg border border-sky-200 animate-slide-up">
-        <h1 className="font-display text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-600 mb-4 animate-pop">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-md px-8 py-12 rounded-2xl shadow-xl bg-white border-4 border-blue-500 pixel-border animate-slide-up">
+        <h1 className="font-retro text-5xl font-extrabold text-pink-500 mb-4 animate-pop">
           Soc Ops
         </h1>
-        <p className="font-serif text-xl text-sky-900 mb-8 animate-fade-in delay-100">
-          Social Bingo, Reimagined
+        <p className="font-retro text-lg text-blue-700 mb-8 animate-fade-in delay-100">
+          Social Bingo, Retro Edition
         </p>
 
-        {/* How to play section with staggered animation */}
-        <div className="w-full bg-white/90 rounded-xl p-6 shadow-md border border-sky-100 mb-8 animate-fade-in delay-200">
-          <h2 className="font-semibold text-sky-700 mb-3 text-lg">
+        {/* How to play section with pixel art */}
+        <div className="w-full bg-yellow-100 rounded-lg p-6 shadow-md border-4 border-green-400 mb-8 animate-fade-in delay-200">
+          <h2 className="font-retro text-green-700 mb-3 text-lg">
             How to Play
           </h2>
-          <ul className="text-left text-sky-800 text-base space-y-2">
+          <ul className="text-left text-blue-800 text-base space-y-2">
             <li className="animate-fade-in delay-300">
-              🔍 Find people who match the questions
+              🕹️ Find people who match the questions
             </li>
             <li className="animate-fade-in delay-400">
-              🟦 Tap a square when you find a match
+              🟩 Tap a square when you find a match
             </li>
             <li className="animate-fade-in delay-500">
               🏆 Get 5 in a row to win!
@@ -64,22 +38,26 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </ul>
         </div>
 
-        {/* Call to action button with motion */}
+        {/* Call to action button with pixel style */}
         <button
           onClick={onStart}
-          className="w-full bg-gradient-to-r from-sky-400 to-indigo-500 text-white font-bold py-5 px-10 rounded-xl text-2xl shadow-lg hover:scale-105 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-sky-400 transition-all duration-300 animate-pop delay-600"
+          className="w-full bg-pink-400 text-white font-retro py-4 px-8 rounded-lg text-lg border-4 border-blue-500 shadow-lg hover:bg-green-400 hover:text-blue-900 transition-all duration-300 animate-pop delay-600"
         >
           Start Game
         </button>
 
         {/* Footer with playful tagline */}
-        <div className="mt-10 text-xs text-sky-700 opacity-80 animate-fade-in delay-700">
-          <span>Ready to break the ice? Let the games begin!</span>
+        <div className="mt-10 text-xs text-green-700 opacity-80 animate-fade-in delay-700 font-retro">
+          <span>Press Start to play!</span>
         </div>
       </div>
 
-      {/* Custom animations */}
+      {/* Custom retro font and pixel border styles */}
       <style>{`
+        .font-retro { font-family: 'Press Start 2P', monospace; }
+        .pixel-border { box-shadow: 0 0 0 4px #222, 0 0 0 8px #fff; }
+        .pixel-border-top { box-shadow: 0 4px 0 0 #222; }
+        .pixel-border-bottom { box-shadow: 0 -4px 0 0 #222; }
         .animate-fade-in { opacity: 0; animation: fadeIn 1s forwards; }
         .animate-slide-up { transform: translateY(40px); opacity: 0; animation: slideUp 1.2s cubic-bezier(.68,-0.55,.27,1.55) forwards; }
         .animate-pop { transform: scale(0.95); opacity: 0; animation: popIn 0.8s cubic-bezier(.68,-0.55,.27,1.55) forwards; }
@@ -94,6 +72,11 @@ export function StartScreen({ onStart }: StartScreenProps) {
         @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
         @keyframes popIn { to { transform: scale(1); opacity: 1; } }
       `}</style>
+      {/* Google Fonts: Press Start 2P */}
+      <link
+        href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+      />
     </div>
   );
 }
